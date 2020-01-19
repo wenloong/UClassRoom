@@ -31,7 +31,7 @@ and (min-device-width : 320px) {
    }
 
    .inner-unique-code {
-      padding: 50px 20px 25px;
+      padding: 25px 20px 25px;
       text-align: center;
    }
 
@@ -51,6 +51,7 @@ and (min-device-width : 320px) {
    .button-wrapper {
       display: flex;
       justify-content: space-around;
+      padding-bottom: 10px;
    }
 
    .enter-button,
@@ -62,6 +63,11 @@ and (min-device-width : 320px) {
       width: 50px;
       text-align: center;
       cursor: pointer;
+   }
+
+   .enter-button a {
+      text-decoration: none;
+      color: #fff;
    }
 
    .enter-button p, 

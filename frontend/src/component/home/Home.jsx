@@ -45,7 +45,7 @@ export default class Home extends Component {
          <React.Fragment>
             <div className="home-wrapper">
                <div className="welcome-greeting">
-                  <p><span className="bold">Welcome</span>, xxx</p>
+                  <p><span className="bold">Welcome</span>, Student!</p>
                </div>
                <div className="classes-wrapper">
                   {this.state.classes.map(classes => (
@@ -53,7 +53,7 @@ export default class Home extends Component {
                         <div className="class-delete-wrapper">
                            <button className="class-delete-button">x</button>
                         </div>
-                        <Link to="/inclass">
+                        <Link to="/info">
                            <Classes title={classes.title} professor={classes.professor} desc={classes.desc}/>
                         </Link>
                      </React.Fragment>
@@ -90,7 +90,7 @@ const UniqueCode = ({ handleClose, showUniqueCode, children }) => {
             {children}
             <div className="button-wrapper">
                <div className="return-button" onClick={handleClose}>
-                  <p>Return</p>
+                  <p>Cancel</p>
                </div>
    
                <div className="enter-button">

@@ -1,0 +1,172 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) {
+   .information-wrapper {
+      margin: 0 20px;
+   }
+
+   .top-row {
+      margin-top: 20px;
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #d3d3d3;
+   }
+
+   .information-title p {
+      font-weight: bold;
+      padding: 7px 5px;
+      margin: 0;
+      font-size: 25px;
+   }
+
+   .back-button p {
+      border-radius: 10px;
+      border: none;
+      padding: 12px 17px;
+      background-color: #2ecc71;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      margin: 0;
+   }
+
+   .information-desc {
+      background-color: #3F3F3F;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin-top: 20px;
+      color: #fff;
+   }
+
+   .information-desc p {
+      margin: 5px 0;
+   }
+
+   .announcement-wrapper {
+      background-color: #FFE1E7;
+      border-radius: 10px;
+      margin-top: 10px;
+      max-height: 60vh;
+      overflow-y: scroll;
+   }
+
+   .announcement-title {
+      position: relative;
+      top: 19px;
+      font-size: 25px;
+      font-weight: bold;
+   }
+
+   .announcement-title p {
+      margin: 0;
+      color: #333;
+   }
+   
+   .announcement-block {
+      padding: 10px 10px;
+      color: #333;
+      width: 90%;
+      border-bottom: 1px solid #d3d3d3;
+   }
+
+   .announcement-block {
+      margin: 20px auto 20px;
+   }
+
+   .announcement-block:last-child {
+      margin-bottom: 20px;
+   }
+
+   .announcement-desc p {
+      margin: 5px 0;
+   }
+
+   .announcement-header {
+      display: flex;
+      justify-content: space-between;
+   }
+
+   .announcement-header p:first-child {
+      font-weight: bold;
+   }
+
+   .announcement-header p {
+      margin: 0;
+   }
+
+   .announcement-header p:nth-child(2) {
+      font-size: 12px;
+      margin-top: 3px;
+   }
+
+   .join-session-button {
+      position: absolute;
+      bottom: 20px;
+   }
+
+   .join-session-button button {
+      border-radius: 10px;
+      border: none;
+      padding: 10px 15px;
+      background-color: #2ecc71;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+   }
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1280px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1280px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1281px) {
+/* Styles */ 
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
