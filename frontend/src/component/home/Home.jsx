@@ -73,7 +73,6 @@ export default class Home extends Component {
    componentDidMount() {
       const itemRef = firebase.database().ref('classes');
       itemRef.on('value', (snapshot) =>  {
-         console.log(snapshot.val());
          let classItems = snapshot.val();
          let newState = [];
 
@@ -105,6 +104,14 @@ export default class Home extends Component {
       this.setState({ showUniqueCode: false });
    }
 
+   showAddClass = () => {
+      this.setState({ showAddClass: true });
+   }
+
+   hideAddClass = () => {
+      this.setState({ showAddClass: false });
+   }
+
    render() {
       return (
          <React.Fragment>
@@ -119,7 +126,7 @@ export default class Home extends Component {
                         <div className="class-delete-wrapper">
                            <button onClick={() => this.removeClass(classItem.id)} className="class-delete-button">x</button>
                         </div>
-                        <Link to="/info">
+                        <Link to={{pathname:["/info/", classItem.id].join(""), state: this.state.classes}}>
                            <Classes key={classItem.id} title={classItem.title} professor={classItem.professor} desc={classItem.desc}/>
                         </Link>
                      </React.Fragment>
@@ -136,17 +143,27 @@ export default class Home extends Component {
                   <p onClick={this.showUniqueCode}>Join a classroom</p>
                </div>
 
-               <form onSubmit={this.handleAddClass}>
-                  <input type="text" name="course_title" onChange={this.handleChange} placeholder="Title" value={this.state.course_title}/>
-                  <input type="text" name="course_professor" onChange={this.handleChange} placeholder="Professor" value={this.state.course_professor}/>
-                  <input type="text" name="course_desc" onChange={this.handleChange} placeholder="Desc" value={this.state.course_desc}/>
-                  <button>Add Class</button>
-               </form>
+               
+               
+
+               <AddClass showAddClass={this.state.showAddClass}>
+                  <form className="form-add-class" onSubmit={this.handleAddClass}>
+                     <p>Create a Class</p>
+                     <input type="text" name="course_title" onChange={this.handleChange} placeholder="Title" value={this.state.course_title}/>
+                     <input type="text" name="course_professor" onChange={this.handleChange} placeholder="Professor" value={this.state.course_professor}/>
+                     <input type="text" name="course_desc" onChange={this.handleChange} placeholder="Description" value={this.state.course_desc}/>
+                     
+                     <button className="add-class-submit"><p>Add Class</p></button>
+                     <div className="return-announcement-button" onClick={this.hideAddClass}>
+                        <p>Cancel</p>
+                     </div>
+                  </form>
+               </AddClass>
 
                <div className="create-classroom">
                   <div className="create-classroom-button">
                      <p>Create a class</p>
-                     <button>+</button>
+                     <button onClick={this.showAddClass}>+</button>
                   </div>
                </div>
             </div>
@@ -171,6 +188,18 @@ const UniqueCode = ({ handleClose, showUniqueCode, children }) => {
                   <p>Enter</p>
                </div>   
             </div>
+         </div>
+      </div>
+   )
+};
+
+const AddClass = ({showAddClass, children }) => {
+   const showHideClassName = showAddClass? "modal display-block" : "modal display-none";
+
+   return (
+      <div className={showHideClassName}>
+         <div className="add-class-wrapper">
+            {children}
          </div>
       </div>
    )

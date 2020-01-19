@@ -10,7 +10,9 @@ and (min-device-width : 320px) {
       background: rgba(0, 0, 0, 0.4);
    }
 
-   .unique-code-wrapper {
+   .unique-code-wrapper,
+   .add-announcement-wrapper,
+   .add-class-wrapper {
       position: fixed;
       top:50%;
       left:50%;
@@ -20,6 +22,10 @@ and (min-device-width : 320px) {
       -moz-box-shadow: 5px 5px 10px #888;
       -webkit-box-shadow: 5px 5px 10px #888;
       box-shadow: 5px 5px 10px #888;
+   }
+
+   .add-announcement-wrapper {
+      padding: 10px;
    }
 
    .display-block {
