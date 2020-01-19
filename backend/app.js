@@ -26,6 +26,18 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
     console.log("Main IO received socket.");
 
+    socket.on('session query', function (sessionCode) {
+        console.log("A client queried the session code " + sessionCode);
+
+        if (sessionMap.has(sessionCode)) {
+            console.log("The session query for " + sessionCode + " was successful. Returning success socket.");
+            socket.emit('success session query', sessionCode);
+        } else {
+            console.log("The session query for " + sessionCode + " failed. Returning failure socket.");
+            socket.emit('failure session query', sessionCode);
+        }
+    });
+
     socket.on('createsession', function (user, classroomCode, sessionCode) {
         createNewSession(user, classroomCode, sessionCode);
         socket.emit('sessioncreated', user, classroomCode, sessionCode);

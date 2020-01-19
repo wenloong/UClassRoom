@@ -1,5 +1,6 @@
 SEND:
 
+'session query' {sessionCode}
 'createsession' {user, classroomcode, sessionCode}
 'session vote' {user, choice: 0/1} (0 question, 1 slow down)
 'session join' {user}
@@ -9,6 +10,8 @@ SEND:
 
 RECEIVE / LISTEN:
 
+'success session query' {sessionCode}                           sent after 'session query' and session code exists
+'failure session query' {sessionCode}                           sent after 'session query' and if session code DNE
 'sessioncreated' {user, classroomCode, sessionCode} 			sent after 'createsession'
 'sessionended' {classroomCode, sessionCode} 					GLOBAL - sent after 'endsession'
 'success session vote' {user, choice} 							sent after 'session vote'
