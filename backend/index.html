@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NODE JS!</title>
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+
+<!--<script>-->
+<!--  var socket = io.connect(location.hostname);-->
+<!--  socket.on('news', function (data) {-->
+<!--    console.log(data);-->
+<!--    socket.emit('my other event', { my: data });-->
+<!--  });-->
+<!--</script>-->
+
+<div>Username</div>
+<input id="username" type="text"/>
+<div>Classroom Code</div>
+<input id="classroomcode" type="text"/>
+<br><br>
+<input id="code" type="text"/>
+<button id="join" type="button">Join</button>
+<br>
+<input id="codeCreate" type="text"/>
+<button id="create" type="button">Create</button>
+<br>
+<button id="questions" type="button">Questions</button>
+<button id="slow-down" type="button">Slow down!</button>
+<br>
+<button id="leave" type="button">Leave</button>
+<br>
+<p id="resp-demo"></p>
+
+<script>
+  let clientSocket = null;
+
+  document.getElementById("join").addEventListener("click", function() {
+    clientSocket = io(location.hostname + "/session-" + document.getElementById("code").value);
+
+    document.getElementById("resp-demo").innerHTML = "Connecting... (" + document.getElementById("code").value + ")";
+    clientSocket.emit('session join', document.getElementById("username").value);
+  });
+
+  document.getElementById("create").addEventListener("click", function() {
+    let createSocket = io(location.hostname);
+
+    document.getElementById("resp-demo").innerHTML = "Creating... (" + document.getElementById("codeCreate").value + ")";
+    createSocket.emit('createsession', document.getElementById("username").value, document.getElementById("classroomcode").value, document.getElementById("codeCreate").value);
+  });
+
+  document.getElementById("leave").addEventListener("click", function() {
+    if (clientSocket) {
+      clientSocket.emit('session leave', document.getElementById("username").value);
+      clientSocket.disconnect();
+      clientSocket = null;
+    }
+  });
+</script>
+</body>
+</html>
