@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 import './../../stylesheets/InClass.css';
 
 export default class InClass extends Component {
+
    render() {
+      const { response } = this.state;
       return (
          <React.Fragment>
             <div className="inclass-wrapper">

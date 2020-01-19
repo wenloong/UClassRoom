@@ -1,0 +1,272 @@
+/*Smartphones (portrait and landscape) -----------*/
+@media only screen 
+and (min-device-width : 320px) {
+   .sign-in-page {
+      background: rgb(229,190,255);
+      background: linear-gradient(180deg, rgba(229,190,255,1) 10%, rgba(255,182,176,1) 60%, rgba(255,247,185,1) 90%);
+      background-repeat: no-repeat;
+      background-position: absolute;
+      background-size: cover;
+      text-align: center;
+      width: 80%;
+      height: 40vh;
+      margin: 0 auto;
+      margin-top: 100px;
+      border-radius: 10px;
+   }
+   
+   #sign-in-header {
+      padding-top: 50px;
+      font-weight: bold;
+      font-size: 40px;
+      color: white;
+   }
+   
+   .login {
+      position: relative;
+      left: 100px;
+      top: -130px;
+      background-color: #fff;
+      border: none;
+      padding:10px 20px;
+      border-radius: 10px;
+      color: #333;
+      cursor: pointer;
+   }
+
+   .sign-in-title {
+      color: #fff;
+      font-size: 20px;
+   }
+   
+   .login:hover{
+   -webkit-transition: background-color rgb(255, 255, 255, 0.3);
+      transition: background-color rgb(255, 255, 255, 0.3);
+   }
+   
+   .f1{
+      width: 40px;
+      -webkit-animation-delay: 4s;
+      animation-delay: 4s;
+      -webkit-animation-duration: 9s;
+      animation-duration: 9s;
+      margin-left: 0%;
+      position: absolute;
+      top: -45px;
+      animation: float ease-in infinite,
+         spinR ease-out infinite,
+         sideR ease-in-out infinite;
+   
+   -webkit-animation: float ease-in infinite,
+         spinR ease-out infinite,
+         sideR ease-in-out infinite;
+   
+   -moz-animation: float ease-in infinite,
+         spinR ease-out infinite,
+         sideR ease-in-out infinite;
+   
+   -webkit-animation-fill-mode: forwards;
+   -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+   }
+   .f2{
+      width: 40px;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+	-webkit-animation-duration: 9s;
+	animation-duration: 9s;
+	margin-left: 12%;
+      position: absolute;
+      top: -45px;
+      animation: float ease-in infinite,
+         spinL ease-out infinite,
+         sideR ease-in-out infinite;
+   
+   -webkit-animation: float ease-in infinite,
+         spinL ease-out infinite,
+         sideR ease-in-out infinite;
+   
+   -moz-animation: float ease-in infinite,
+         spinL ease-out infinite,
+         sideR ease-in-out infinite;
+   
+   -webkit-animation-fill-mode: forwards;
+   -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+   }
+   .f3{
+      width: 40px;
+	-webkit-animation-delay: 3.5s;
+	animation-delay: 3.5s;
+	-webkit-animation-duration: 7s;
+	animation-duration: 7s;
+	margin-left: 23%;
+      position: absolute;
+      top: -45px;
+      animation: float ease-in infinite,
+         spinR ease-out infinite,
+         sideL ease-in-out infinite;
+   
+   -webkit-animation: float ease-in infinite,
+         spinR ease-out infinite,
+         sideL ease-in-out infinite;
+   
+   -moz-animation: float ease-in infinite,
+         spinR ease-out infinite,
+         sideL ease-in-out infinite;
+   
+   -webkit-animation-fill-mode: forwards;
+   -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+   }
+   .f4{
+      width: 40px;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 37%;
+      position: absolute;
+      top: -45px;
+      animation: float ease-in infinite,
+         spinL ease-out infinite,
+         sideL ease-in-out infinite;
+   
+   -webkit-animation: float ease-in infinite,
+         spinL ease-out infinite,
+         sideL ease-in-out infinite;
+   
+   -moz-animation: float ease-in infinite,
+         spinL ease-out infinite,
+         sideL ease-in-out infinite;
+   
+   -webkit-animation-fill-mode: forwards;
+   -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+   }
+   
+   
+   @keyframes enter{
+      from {opacity: 0;}
+      to {opacity: 1;}
+   }
+   
+   @keyframes float{
+      from {position: absolute; top: -450px;}
+      to {position: absolute; top: 1000px;}
+   }
+   @-webkit-keyframes float{
+      from {position: absolute; top: -45px;}
+      to {position: absolute; top: 91.8%;}
+   }
+   @-moz-keyframes float{
+      from {position: absolute; top: -45px;}
+      to {position: absolute; top: 91.8%;}
+   }
+   
+   @keyframes spinR{
+      from {transform: rotate(0deg);}
+      to {transform: rotate(130deg);}
+   }
+   @-moz-keyframes spinR{ 
+      from {transform: rotate(0deg);}
+      to {transform: rotate(130deg);}
+   }
+   @-webkit-keyframes spinR{
+      from {transform: rotate(0deg);}
+      to {transform: rotate(130deg);}
+   }
+   
+   @keyframes spinL{
+      from {transform: rotate(0deg);}
+      to {transform: rotate(-110deg);}
+   }
+   @-moz-keyframes spinL{ 
+      from {transform: rotate(0deg);}
+      to {transform: rotate(-110deg);}
+   }
+   @-webkit-keyframes spinL{
+      from {transform: rotate(0deg);}
+      to {transform: rotate(-110deg);}
+   }
+   
+   @keyframes sideR{
+      from {position: fixed; left: 0%;}
+      to {position: fixed; left: 20%;}
+   }
+   @-moz-keyframes sideR{ 
+      from {position: fixed; left: 0%;}
+      to {position: fixed; left: 20%;}
+   }
+   @-webkit-keyframes sideR{
+      from {position: fixed; left: 0%;}
+      to {position: fixed; left: 20%;}
+   }
+   
+   @keyframes sideL{
+      from {position: fixed; left: 0%;}
+      to {position: fixed; left: -16%;}
+   }
+   @-moz-keyframes sideL{ 
+      from {position: fixed; left: 0%;}
+      to {position: fixed; left: -16%;}
+   }
+   @-webkit-keyframes sideL{
+      from {position: fixed; left: 0%;}
+      to {position: fixed; left: -16%;}
+   }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1280px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1280px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1281px) {
+/* Styles */ 
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}

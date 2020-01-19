@@ -143,9 +143,6 @@ export default class Home extends Component {
                   <p onClick={this.showUniqueCode}>Join a classroom</p>
                </div>
 
-               
-               
-
                <AddClass showAddClass={this.state.showAddClass}>
                   <form className="form-add-class" onSubmit={this.handleAddClass}>
                      <p>Create a Class</p>
@@ -162,7 +159,7 @@ export default class Home extends Component {
 
                <div className="create-classroom">
                   <div className="create-classroom-button">
-                     <p>Create a class</p>
+                     {/* <p>Create a class</p> */}
                      <button onClick={this.showAddClass}>+</button>
                   </div>
                </div>
