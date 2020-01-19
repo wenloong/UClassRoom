@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="RoseHack project 2020" content="">
+	<meta name="" content="width=device-width, initial-scale=1">
+
+<style>
+
+html{
+	min-height: 100%;
+	position: relative;
+}
+
+body{
+	background: rgb(229,190,255);
+	background: linear-gradient(180deg, rgba(229,190,255,1) 10%, rgba(255,182,176,1) 60%, rgba(255,247,185,1) 90%);
+	background-repeat: no-repeat;
+	background-position: absolute;
+	background-size: cover;
+}
+
+body.noScroll {
+	overflow: hidden;
+}
+
+h1{
+	font-family: Impact, Charcoal, serif;
+	margin-top: 100px;
+	font-style: oblique;
+	letter-spacing: 8px;
+	font-weight: 5000;
+	font-size: 80px;
+	color: white;
+}
+
+h2{
+	font-family: Impact, Charcoal, serif;
+	letter-spacing: 2px;
+	font-size: 30px;
+	color: white;
+}
+
+.login{
+	height: 275px;
+	width: 275px;
+	background-color: rgb(255, 255, 255, 0.1);
+	padding:10px 20px 40px 20px;
+	position: relative;
+	margin: auto;
+	border-radius: 40px;
+}
+
+.login:hover{
+-webkit-transition: background-color rgb(255, 255, 255, 0.3);
+	transition: background-color rgb(255, 255, 255, 0.3);
+}
+
+input[type=text]{
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	opacity: 0.5;
+-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+	color: #FF217D;
+	padding: 14px 20px;
+	margin: 8px 0;
+	cursor: pointer;
+	display: inline-block;
+	border: 3px double white;
+	border-radius: 25px;
+	box-sizing: border-box;
+}
+
+input[type=text]:hover{
+	opacity: 1;
+}
+
+input[type=text]:focus{
+	opacity: 1;
+}
+
+*:focus {
+    outline: none;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: white;
+}
+::-ms-input-placeholder {
+  color: white;
+}
+
+
+.f1{
+	position: absolute;
+	top: -45px;
+	animation: float ease-in infinite,
+		spinR ease-out infinite,
+		sideR ease-in-out infinite;
+
+-webkit-animation: float ease-in infinite,
+		spinR ease-out infinite,
+		sideR ease-in-out infinite;
+
+-moz-animation: float ease-in infinite,
+		spinR ease-out infinite,
+		sideR ease-in-out infinite;
+
+-webkit-animation-fill-mode: forwards;
+-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+.f2{
+	position: absolute;
+	top: -45px;
+	animation: float ease-in infinite,
+		spinL ease-out infinite,
+		sideR ease-in-out infinite;
+
+-webkit-animation: float ease-in infinite,
+		spinL ease-out infinite,
+		sideR ease-in-out infinite;
+
+-moz-animation: float ease-in infinite,
+		spinL ease-out infinite,
+		sideR ease-in-out infinite;
+
+-webkit-animation-fill-mode: forwards;
+-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+.f3{
+	position: absolute;
+	top: -45px;
+	animation: float ease-in infinite,
+		spinR ease-out infinite,
+		sideL ease-in-out infinite;
+
+-webkit-animation: float ease-in infinite,
+		spinR ease-out infinite,
+		sideL ease-in-out infinite;
+
+-moz-animation: float ease-in infinite,
+		spinR ease-out infinite,
+		sideL ease-in-out infinite;
+
+-webkit-animation-fill-mode: forwards;
+-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+.f4{
+	position: absolute;
+	top: -45px;
+	animation: float ease-in infinite,
+		spinL ease-out infinite,
+		sideL ease-in-out infinite;
+
+-webkit-animation: float ease-in infinite,
+		spinL ease-out infinite,
+		sideL ease-in-out infinite;
+
+-moz-animation: float ease-in infinite,
+		spinL ease-out infinite,
+		sideL ease-in-out infinite;
+
+-webkit-animation-fill-mode: forwards;
+-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+
+@keyframes enter{
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+@keyframes float{
+	from {position: absolute; top: -450px;}
+	to {position: absolute; top: 1000px;}
+}
+@-webkit-keyframes float{
+	from {position: absolute; top: -45px;}
+	to {position: absolute; top: 91.8%;}
+}
+@-moz-keyframes float{
+	from {position: absolute; top: -45px;}
+	to {position: absolute; top: 91.8%;}
+}
+
+@keyframes spinR{
+	from {transform: rotate(0deg);}
+	to {transform: rotate(130deg);}
+}
+@-moz-keyframes spinR{ 
+	from {transform: rotate(0deg);}
+	to {transform: rotate(130deg);}
+}
+@-webkit-keyframes spinR{
+	from {transform: rotate(0deg);}
+	to {transform: rotate(130deg);}
+}
+
+@keyframes spinL{
+	from {transform: rotate(0deg);}
+	to {transform: rotate(-110deg);}
+}
+@-moz-keyframes spinL{ 
+	from {transform: rotate(0deg);}
+	to {transform: rotate(-110deg);}
+}
+@-webkit-keyframes spinL{
+	from {transform: rotate(0deg);}
+	to {transform: rotate(-110deg);}
+}
+
+@keyframes sideR{
+	from {position: fixed; left: 0%;}
+	to {position: fixed; left: 20%;}
+}
+@-moz-keyframes sideR{ 
+	from {position: fixed; left: 0%;}
+	to {position: fixed; left: 20%;}
+}
+@-webkit-keyframes sideR{
+	from {position: fixed; left: 0%;}
+	to {position: fixed; left: 20%;}
+}
+
+@keyframes sideL{
+	from {position: fixed; left: 0%;}
+	to {position: fixed; left: -16%;}
+}
+@-moz-keyframes sideL{ 
+	from {position: fixed; left: 0%;}
+	to {position: fixed; left: -16%;}
+}
+@-webkit-keyframes sideL{
+	from {position: fixed; left: 0%;}
+	to {position: fixed; left: -16%;}
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<img src="RHr1.png" class="f1"
+	style="width: 40px;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+	-webkit-animation-duration: 9s;
+	animation-duration: 9s;
+	margin-left: 0%;
+" />
+<img src="RHr2.png" class="f2"
+	style="width: 40px;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+	-webkit-animation-duration: 9s;
+	animation-duration: 9s;
+	margin-left: 12%;
+" />
+<img src="RHr3.png" class="f3"
+	style="width: 40px;
+	-webkit-animation-delay: 3.5s;
+	animation-delay: 3.5s;
+	-webkit-animation-duration: 7s;
+	animation-duration: 7s;
+	margin-left: 23%;
+" />
+<img src="RHr4.png" class="f4"
+	style="width: 40px;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 37%;
+" />
+<img src="RHr5.png" class="f3"
+	style="width: 40px;
+	-webkit-animation-delay: 3s;
+	animation-delay: 3s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 41%;
+" />
+<img src="RHr1.png" class="f2"
+	style="width: 40px;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+	-webkit-animation-duration: 7s;
+	animation-duration: 7s;
+	margin-left: 56%;
+" />
+<img src="RHr2.png" class="f4"
+	style="width: 40px;
+	-webkit-animation-delay: 2s;
+	animation-delay: 2s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 59%;
+" />
+<img src="RHr3.png" class="f4"
+	style="width: 40px;
+	-webkit-animation-delay: 3s;
+	animation-delay: 3s;
+	-webkit-animation-duration: 9s;
+	animation-duration: 9s;
+	margin-left: 74%;
+" />
+<img src="RHr4.png" class="f2"
+	style="width: 40px;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+	-webkit-animation-duration: 10s;
+	animation-duration: 10s;
+	margin-left: 89%;
+" />
+<img src="RHr5.png" class="f4"
+	style="width: 40px;
+	-webkit-animation-delay: 2.5s;
+	animation-delay: 2.5s;
+	-webkit-animation-duration: 10s;
+	animation-duration: 10s;
+	margin-left: 93%;
+" />
+<img src="RHr3.png" class="f3"
+	style="width: 40px;
+	-webkit-animation-delay: 7s;
+	animation-delay: 7s;
+	-webkit-animation-duration: 7s;
+	animation-duration: 7s;
+	margin-left: 27%;
+" />
+<img src="RHr4.png" class="f4"
+	style="width: 40px;
+	-webkit-animation-delay: 8s;
+	animation-delay: 8s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 32%;
+" />
+<img src="RHr5.png" class="f3"
+	style="width: 40px;
+	-webkit-animation-delay: 9.5s;
+	animation-delay: 9.5s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 44%;
+" />
+<img src="RHr4.png" class="f3"
+	style="width: 40px;
+	-webkit-animation-delay: 10s;
+	animation-delay: 10s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 2%;
+" />
+<img src="RHr1.png" class="f2"
+	style="width: 40px;
+	-webkit-animation-delay: 6s;
+	animation-delay: 6s;
+	-webkit-animation-duration: 7s;
+	animation-duration: 7s;
+	margin-left: 57%;
+" />
+<img src="RHr1.png" class="f4"
+	style="width: 40px;
+	-webkit-animation-delay: 9s;
+	animation-delay: 9s;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	margin-left: 59%;
+" />
+
+<h1 style="
+	animation: enter 1s ease-out 0s 1;
+
+"><center>UClassRoom</center></h1>
+
+<div class="login">
+<center>
+<h2>NetID:</h2>
+<input type="text" name="firstname" placeholder="Your UCR NetID...">
+	<br>
+<h2>Password:</h2>
+<input type="text" name="lastname" placeholder="Your password...">
+</center>
+</div>
+
+
+  
+</body>
+
+</html>
