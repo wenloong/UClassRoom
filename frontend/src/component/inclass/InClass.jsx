@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 
 import './../../stylesheets/InClass.css';
 
-
-
 export default class InClass extends Component {
    render() {
       return (
@@ -13,7 +11,7 @@ export default class InClass extends Component {
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                     nisi ut aliquip ex ea commodo consequat. </p>
+                     nisi ut aliquip ex ea commodo consequat.</p>
                </div>
                <div className="inclass-buttons-wrapper">
                   <div className="inclass-button">

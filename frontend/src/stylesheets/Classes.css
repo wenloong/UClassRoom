@@ -1,71 +1,40 @@
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 320px) {
-   .bold {
-      font-weight: bold;
-   }
-
-   a {
-      text-decoration: none;
-   }
-
-   .home-wrapper {
-      margin: 0 20px;
-   }
-
-   .create-classroom button,
-   .create-classroom p,
-   .join-classroom button, 
-   .join-classroom p {
-      display: inline-block;
-   }
-
-   .welcome-greeting {
-      font-size: 25px;
-   }
-
-   .join-classroom p,
-   .create-classroom button {
-      cursor: pointer;
-   }
-
-   .join-classroom p {
-      border-radius: 10px;
-      border: none;
-      padding: 10px 15px;
-      background-color: #2ecc71;
-      font-weight: bold;
+   .class {
+      background-color: #3e3e3e;
+      border-radius: 15px;
+      padding: 10px 10px;
       color: #fff;
+      margin-bottom: 10px;
    }
 
-   .join-classrooom p {
-      font-size: 20px;
+   .class-row {
+      display: flex;
+      justify-content: space-between;
    }
 
-   .create-classroom button {
+   .class-title p, 
+   .professor-name p,
+   .class-desc p {
+      margin: 5px 0;
+   }
+
+   .class-delete-wrapper {
+      text-align: right;
+      position: relative;
+      top: 10px;
+      right: -10px;
+   }
+
+   .class-delete-button {
       border-radius: 100%;
       border: none;
-      padding: 10px 15px;
-      background-color: #2ecc71;
+      padding: 4px 10px;
+      background-color: #c0392b;
       font-weight: bold;
       color: #fff;
    }
-
-   .create-classroom-button {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-   }
-
-   .create-classroom-button > p {
-      margin-right: 10px;
-      font-size: 14px;
-   }
-
-   .create-classroom p {
-      margin-left: 10px;
-   }
-
 }
 
 /* Smartphones (landscape) ----------- */

@@ -1,10 +1,36 @@
 import React, {Component} from 'react';
+import { Link } from "react-router-dom";
+
+import Classes from './Classes';
 
 import './../../stylesheets/Home.css';
 import './../../stylesheets/UniqueCode.css';
 
 export default class Home extends Component {
-   state = { showUniqueCode: false };
+   state = { 
+      showUniqueCode: false,
+
+      classes: [
+         {
+            id: 1,
+            title: 'CS 100',
+            professor: 'Rose Hacker',
+            desc: 'Lorem Ipsum this class is going to teach you how to ...'
+         },
+         {
+            id: 2,
+            title: 'CS 061',
+            professor: 'Silverman Fish',
+            desc: 'Lorem ipsum this class is going to teach you how to be a fish..'
+         },
+         {
+            id: 3,
+            title: 'BUS 061',
+            professor: 'Dog Fish',
+            desc: 'Lorem ipsum this class is going to teach you how to be a fish..'
+         }
+      ]
+   };
 
    showUniqueCode = () => {
       this.setState({ showUniqueCode: true });
@@ -21,9 +47,17 @@ export default class Home extends Component {
                <div className="welcome-greeting">
                   <p><span className="bold">Welcome</span>, xxx</p>
                </div>
-               <div className="create-classroom">
-                  <button onClick="">+</button>
-                  <p>Create a classroom</p>
+               <div className="classes-wrapper">
+                  {this.state.classes.map(classes => (
+                     <React.Fragment>
+                        <div className="class-delete-wrapper">
+                           <button className="class-delete-button">x</button>
+                        </div>
+                        <Link to="/inclass">
+                           <Classes title={classes.title} professor={classes.professor} desc={classes.desc}/>
+                        </Link>
+                     </React.Fragment>
+                  ))}
                </div>
                <UniqueCode showUniqueCode={this.state.showUniqueCode} handleClose={this.hideUniqueCode}>
                   <div className="inner-unique-code">
@@ -32,8 +66,14 @@ export default class Home extends Component {
                   </div>
                </UniqueCode>
                <div className="join-classroom">
-                  <button onClick={this.showUniqueCode}>+</button>
-                  <p>Join a classroom</p>
+                  <p onClick={this.showUniqueCode}>Join a classroom</p>
+               </div>
+
+               <div className="create-classroom">
+                  <div className="create-classroom-button">
+                     <p>Create a class</p>
+                     <button onClick="">+</button>
+                  </div>
                </div>
             </div>
          </React.Fragment>
