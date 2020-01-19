@@ -1,47 +1,11 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import firebase from './../../firebase.js';
+import io from 'socket.io-client';
 
 import './../../stylesheets/Info.css';
 
 export default class Info extends Component {
-   // state = {
-   //    showUniqueCode: false,
-
-   //    announcements: [
-   //       {
-   //          id: 1,
-   //          announcementTitle: 'Homework 1 DUE!',
-   //          assigner: 'Prof. McDonalds',
-   //          announcementDesc: 'Remeber to submit your homework on iLearn by tonight!'
-   //       },
-   //       {
-   //          id: 3,
-   //          announcementTitle: 'No Class On Monday',
-   //          assigner: 'TA: Ronald',
-   //          announcementDesc: 'A friendly reminder that there is no class on Monday due to MLK. I will not be tolerating anyone coming to class on that day'
-   //       },
-   //       {
-   //          id: 4,
-   //          announcementTitle: 'Homework Questions',
-   //          assigner: 'Prof. McDonalds',
-   //          announcementDesc: 'Come to office hours to learn more!'
-   //       },
-   //       {
-   //          id: 5,
-   //          announcementTitle: 'Office Hours Updated',
-   //          assigner: 'Prof. McDonalds',
-   //          announcementDesc: 'Only Saturdays and Sundays for office hours'
-   //       },
-   //       {
-   //          id: 6,
-   //          announcementTitle: 'Office Hours Updated',
-   //          assigner: 'Prof. McDonalds',
-   //          announcementDesc: 'Only MONDAYS and Sundays for office hours'
-   //       }
-   //    ]
-   // }
-
    constructor(props) {
       super(props);
       this.state = {
@@ -78,6 +42,8 @@ export default class Info extends Component {
          course_announcement_desc: ''
       });
    }
+
+   
 
    componentDidMount() {
       const itemRef = firebase.database().ref(`classes/${this.props.match.params.id}`);
@@ -136,6 +102,15 @@ export default class Info extends Component {
 
    hideAddAnnouncement = () => {
       this.setState({ showAddAnnouncement: false });
+   }
+
+   handleJoinSession = () => {
+      let clientSocket = null;
+      clientSocket = io("http://uclassroom.appspot.com" + "/session-" + "123111");
+      clientSocket.emit('session join', "dummyUser");
+      clientSocket.on('success session join', function() {
+         console.log("Sucess");
+      });
    }
 
    render() {
@@ -226,7 +201,7 @@ const UniqueCode = ({ handleClose, showUniqueCode, children }) => {
    
                <div className="enter-button">
                   <Link to="/inclass">
-                     <p>Enter</p>
+                     <p onClick={this.handleJoinSession}>Enter</p>
                   </Link>
                </div>   
             </div>
@@ -242,8 +217,6 @@ const AddAnnouncement = ({showAddAnnouncement, children }) => {
       <div className={showHideClassName}>
          <div className="add-announcement-wrapper">
             {children}
-
-            
          </div>
       </div>
    )
