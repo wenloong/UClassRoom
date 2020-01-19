@@ -37,7 +37,7 @@ io.on('connection', function (socket) {
         sessionNamespace.removeAllListeners();
         sessionNamespaceMap.delete(sessionCode);
 
-        socket.emit('sessionended', classroomCode);
+        io.emit('sessionended', classroomCode, sessionCode);
         sessionMap.delete(sessionCode);
     });
 
