@@ -10,7 +10,7 @@ SEND:
 RECEIVE / LISTEN:
 
 'sessioncreated' {user, classroomCode, sessionCode} 			sent after 'createsession'
-'sessionended' {classroomCode} 									sent after 'endsession'
+'sessionended' {classroomCode, sessionCode} 					GLOBAL - sent after 'endsession'
 'success session vote' {user, choice} 							sent after 'session vote'
 'vote' {user, choice}											GLOBAL - sent after 'session vote'
 'removevote' {user, choice}										GLOBAL - sent after 'session vote' if a vote was removed
