@@ -1,11 +1,11 @@
 SEND:
 
-'createsession' {user, classroomcode}
+'createsession' {user, classroomcode, sessionCode}
 'session vote' {user, choice: 0/1} (0 question, 1 slow down)
 'session join' {user}
 'session leave' {user}
 'session resetvotes' {user}
-'endsession' {user, classroomCode}
+'endsession' {user, classroomCode, sessionCode}
 
 RECEIVE / LISTEN:
 
