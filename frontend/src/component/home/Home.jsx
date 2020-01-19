@@ -1,36 +1,101 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 
+import firebase from './../../firebase.js';
+
 import Classes from './Classes';
 
 import './../../stylesheets/Home.css';
 import './../../stylesheets/UniqueCode.css';
 
 export default class Home extends Component {
-   state = { 
-      showUniqueCode: false,
+   // state = { 
+   //    showUniqueCode: false,
 
-      classes: [
-         {
-            id: 1,
-            title: 'CS 100',
-            professor: 'Rose Hacker',
-            desc: 'Lorem Ipsum this class is going to teach you how to ...'
-         },
-         {
-            id: 2,
-            title: 'CS 061',
-            professor: 'Silverman Fish',
-            desc: 'Lorem ipsum this class is going to teach you how to be a fish..'
-         },
-         {
-            id: 3,
-            title: 'BUS 061',
-            professor: 'Dog Fish',
-            desc: 'Lorem ipsum this class is going to teach you how to be a fish..'
+   //    classes: [
+   //       {
+   //          id: 1,
+   //          title: 'CS 100',
+   //          professor: 'Rose Hacker',
+   //          desc: 'Lorem Ipsum this class is going to teach you how to ...'
+   //       },
+   //       {
+   //          id: 2,
+   //          title: 'CS 061',
+   //          professor: 'Silverman Fish',
+   //          desc: 'Lorem ipsum this class is going to teach you how to be a fish..'
+   //       },
+   //       {
+   //          id: 3,
+   //          title: 'BUS 061',
+   //          professor: 'Dog Fish',
+   //          desc: 'Lorem ipsum this class is going to teach you how to be a fish..'
+   //       }
+   //    ]
+   // };
+
+   constructor() {
+      super();
+      this.state = {
+         course_title: '',
+         course_professor: '',
+         course_desc: '',
+         classes: []
+      };
+
+      this.handleChange = this.handleChange.bind(this);
+      this.handleAddClass = this.handleAddClass.bind(this);
+   }
+
+   handleChange(e) {
+      this.setState({
+         [e.target.name]: e.target.value
+      });
+   }
+
+   handleAddClass(e) {
+      e.preventDefault();
+      const itemRef = firebase.database().ref('classes');
+      const classItem = {
+         title: this.state.course_title,
+         professor: this.state.course_professor,
+         desc: this.state.course_desc
+      }
+
+      itemRef.push(classItem);
+      this.setState({
+         course_title: '',
+         course_professor: '',
+         course_desc: ''
+      });
+   }
+
+   componentDidMount() {
+      const itemRef = firebase.database().ref('classes');
+      itemRef.on('value', (snapshot) =>  {
+         console.log(snapshot.val());
+         let classItems = snapshot.val();
+         let newState = [];
+
+         for (let classItem in classItems) {
+            newState.push({
+               id: classItem,
+               title: classItems[classItem].title,
+               professor: classItems[classItem].professor,
+               desc: classItems[classItem].desc
+            });
          }
-      ]
-   };
+
+         this.setState({
+            classes: newState
+         });
+      });
+   }
+
+   removeClass(classId) {
+      const itemRef = firebase.database().ref(`/classes/${classId}`);
+      itemRef.remove();
+   }
 
    showUniqueCode = () => {
       this.setState({ showUniqueCode: true });
@@ -48,16 +113,18 @@ export default class Home extends Component {
                   <p><span className="bold">Welcome</span>, Student!</p>
                </div>
                <div className="classes-wrapper">
-                  {this.state.classes.map(classes => (
+                  {this.state.classes.map((classItem) => {
+                     return (
                      <React.Fragment>
                         <div className="class-delete-wrapper">
-                           <button className="class-delete-button">x</button>
+                           <button onClick={() => this.removeClass(classItem.id)} className="class-delete-button">x</button>
                         </div>
                         <Link to="/info">
-                           <Classes title={classes.title} professor={classes.professor} desc={classes.desc}/>
+                           <Classes key={classItem.id} title={classItem.title} professor={classItem.professor} desc={classItem.desc}/>
                         </Link>
                      </React.Fragment>
-                  ))}
+                     )
+                  })}
                </div>
                <UniqueCode showUniqueCode={this.state.showUniqueCode} handleClose={this.hideUniqueCode}>
                   <div className="inner-unique-code">
@@ -69,10 +136,17 @@ export default class Home extends Component {
                   <p onClick={this.showUniqueCode}>Join a classroom</p>
                </div>
 
+               <form onSubmit={this.handleAddClass}>
+                  <input type="text" name="course_title" onChange={this.handleChange} placeholder="Title" value={this.state.course_title}/>
+                  <input type="text" name="course_professor" onChange={this.handleChange} placeholder="Professor" value={this.state.course_professor}/>
+                  <input type="text" name="course_desc" onChange={this.handleChange} placeholder="Desc" value={this.state.course_desc}/>
+                  <button>Add Class</button>
+               </form>
+
                <div className="create-classroom">
                   <div className="create-classroom-button">
                      <p>Create a class</p>
-                     <button onClick="">+</button>
+                     <button>+</button>
                   </div>
                </div>
             </div>

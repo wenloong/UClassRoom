@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 const config = {
    apiKey: "AIzaSyDPShOhr8p6pYL11HoPCRq89rjzknU7PEk",
@@ -9,7 +9,7 @@ const config = {
    messagingSenderId: "714986964250",
    appId: "1:714986964250:web:23eac178ffbdc4bf3f98a3",
    measurementId: "G-31TZBSRVBD"
-}
+};
 
- firebase.initializeApp(config);
-firebase.analytics();
+firebase.initializeApp(config);
+export default firebase;
