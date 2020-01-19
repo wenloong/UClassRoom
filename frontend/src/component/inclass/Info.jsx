@@ -1,44 +1,125 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import firebase from './../../firebase.js';
 
 import './../../stylesheets/Info.css';
 
 export default class Info extends Component {
-   state = {
-      showUniqueCode: false,
+   // state = {
+   //    showUniqueCode: false,
 
-      announcements: [
-         {
-            id: 1,
-            announcementTitle: 'Homework 1 DUE!',
-            assigner: 'Prof. McDonalds',
-            announcementDesc: 'Remeber to submit your homework on iLearn by tonight!'
-         },
-         {
-            id: 3,
-            announcementTitle: 'No Class On Monday',
-            assigner: 'TA: Ronald',
-            announcementDesc: 'A friendly reminder that there is no class on Monday due to MLK. I will not be tolerating anyone coming to class on that day'
-         },
-         {
-            id: 4,
-            announcementTitle: 'Homework Questions',
-            assigner: 'Prof. McDonalds',
-            announcementDesc: 'Come to office hours to learn more!'
-         },
-         {
-            id: 5,
-            announcementTitle: 'Office Hours Updated',
-            assigner: 'Prof. McDonalds',
-            announcementDesc: 'Only Saturdays and Sundays for office hours'
-         },
-         {
-            id: 6,
-            announcementTitle: 'Office Hours Updated',
-            assigner: 'Prof. McDonalds',
-            announcementDesc: 'Only MONDAYS and Sundays for office hours'
+   //    announcements: [
+   //       {
+   //          id: 1,
+   //          announcementTitle: 'Homework 1 DUE!',
+   //          assigner: 'Prof. McDonalds',
+   //          announcementDesc: 'Remeber to submit your homework on iLearn by tonight!'
+   //       },
+   //       {
+   //          id: 3,
+   //          announcementTitle: 'No Class On Monday',
+   //          assigner: 'TA: Ronald',
+   //          announcementDesc: 'A friendly reminder that there is no class on Monday due to MLK. I will not be tolerating anyone coming to class on that day'
+   //       },
+   //       {
+   //          id: 4,
+   //          announcementTitle: 'Homework Questions',
+   //          assigner: 'Prof. McDonalds',
+   //          announcementDesc: 'Come to office hours to learn more!'
+   //       },
+   //       {
+   //          id: 5,
+   //          announcementTitle: 'Office Hours Updated',
+   //          assigner: 'Prof. McDonalds',
+   //          announcementDesc: 'Only Saturdays and Sundays for office hours'
+   //       },
+   //       {
+   //          id: 6,
+   //          announcementTitle: 'Office Hours Updated',
+   //          assigner: 'Prof. McDonalds',
+   //          announcementDesc: 'Only MONDAYS and Sundays for office hours'
+   //       }
+   //    ]
+   // }
+
+   constructor(props) {
+      super(props);
+      this.state = {
+         id: '',
+         title: '',
+         professor: '',
+         desc: '',
+         course_announcements: [],
+         course_announcement_title: '',
+         course_announcement_desc: '',
+      }
+
+      this.handleChange = this.handleChange.bind(this);
+      this.handleAddAnnouncement = this.handleAddAnnouncement.bind(this);
+   }
+
+   handleChange(e) {
+      this.setState({
+         [e.target.name]: e.target.value
+      });
+   }
+
+   handleAddAnnouncement(e) {
+      e.preventDefault();
+      const itemRef = firebase.database().ref(`classes/${this.props.match.params.id}`);
+      const announcementItem = {
+         announcement_title: this.state.course_announcement_title,
+         announcement_desc: this.state.course_announcement_desc
+      }
+
+      itemRef.push(announcementItem);
+      this.setState({
+         course_announcement_title: '',
+         course_announcement_desc: ''
+      });
+   }
+
+   componentDidMount() {
+      const itemRef = firebase.database().ref(`classes/${this.props.match.params.id}`);
+      const descRef = itemRef.child('desc');
+      const profRef = itemRef.child('professor');
+      const titleRef = itemRef.child('title');
+      descRef.on('value', (snapshot) => {
+         this.setState({
+            desc: snapshot.val()
+         })
+      });
+
+      profRef.on('value', (snapshot) => {
+         this.setState({
+            professor: snapshot.val()
+         })
+      });
+
+      titleRef.on('value', (snapshot) => {
+         this.setState({
+            title: snapshot.val()
+         })
+      });
+
+      itemRef.on('value', (snapshot) =>  {
+         console.log(snapshot.val());
+         let announcementItems = snapshot.val();
+         let newState = [];
+
+         for (let announcementItem in announcementItems) {
+            console.log(snapshot.val());
+            newState.push({
+               announcement_id: announcementItem,
+               announcement_title: announcementItems[announcementItem].announcement_title,
+               announcement_desc: announcementItems[announcementItem].announcement_desc
+            });
          }
-      ]
+
+         this.setState({
+            course_announcements: newState
+         });
+      });
    }
 
    showUniqueCode = () => {
@@ -49,13 +130,21 @@ export default class Info extends Component {
       this.setState({ showUniqueCode: false });
    }
 
+   showAddAnnouncement = () => {
+      this.setState({ showAddAnnouncement: true });
+   }
+
+   hideAddAnnouncement = () => {
+      this.setState({ showAddAnnouncement: false });
+   }
+
    render() {
       return (
          <React.Fragment>
             <div className="information-wrapper">
                <div className="top-row">
                   <div className="information-title">
-                     <p>CS 101</p>
+                     <p>{this.state.title}</p>
                   </div>
 
                   <div className="back-button">
@@ -67,7 +156,7 @@ export default class Info extends Component {
 
                <div className="information-desc">
                   <p>Description:</p>
-                  <p>This class is going to teach you about creating your own ....</p>
+                  <p>{this.state.desc}</p>
                </div>
 
 
@@ -76,14 +165,14 @@ export default class Info extends Component {
                </div>
 
                <div className="announcement-wrapper">
-                  {this.state.announcements.map(announcement => (
+                  {this.state.course_announcements.slice(0, this.state.course_announcements.length - 3).map(announcement => (
                      <div className="announcement-block">
                         <div className="announcement-header">
-                           <p>{announcement.announcementTitle}</p>
-                           <p>{announcement.assigner}</p>
+                           <p>{announcement.announcement_title}</p>
+                           {/* <p>{announcement.assigner}</p> */}
                         </div>
                         <div className="announcement-desc">
-                           <p>{announcement.announcementDesc}</p>
+                           <p>{announcement.announcement_desc}</p>
                         </div>
                      </div>
                   ))}
@@ -95,12 +184,28 @@ export default class Info extends Component {
                      <input type="text" name="firstname"/>
                   </div>
                </UniqueCode>
-               <div className="join-session-button">
-                  <button onClick={this.showUniqueCode}>Join Session</button>
+
+               <div className="bottom-button-wrapper">
+                  <div className="join-session-button">
+                     <button onClick={this.showUniqueCode}>Join Session</button>
+                  </div>
+
+                  <div className="add-announcement-button">
+                     <button onClick={this.showAddAnnouncement}>Make Announcement</button>
+                  </div>
                </div>
 
-               
-
+               <AddAnnouncement showAddAnnouncement={this.state.showAddAnnouncement}>
+                  <form className="add-announcement-form" onSubmit={this.handleAddAnnouncement}>
+                     <p>Add an Announcement</p>
+                     <input type="text" name="course_announcement_title" onChange={this.handleChange} placeholder="Announcement Title" value={this.state.course_announcement_title}/>
+                     <input type="text" name="course_announcement_desc" onChange={this.handleChange} placeholder="Announcement Description" value={this.state.course_announcement_desc}/>
+                     <button className="add-announcement-submit"><p>Add Announcement</p></button>
+                     <div className="return-announcement-button" onClick={this.hideAddAnnouncement}>
+                        <p>Cancel</p>
+                     </div>
+                  </form>
+               </AddAnnouncement>
             </div>
          </React.Fragment>
       )
@@ -125,6 +230,20 @@ const UniqueCode = ({ handleClose, showUniqueCode, children }) => {
                   </Link>
                </div>   
             </div>
+         </div>
+      </div>
+   )
+};
+
+const AddAnnouncement = ({showAddAnnouncement, children }) => {
+   const showHideClassName = showAddAnnouncement? "modal display-block" : "modal display-none";
+
+   return (
+      <div className={showHideClassName}>
+         <div className="add-announcement-wrapper">
+            {children}
+
+            
          </div>
       </div>
    )

@@ -100,13 +100,12 @@ and (min-device-width : 320px) {
       margin-top: 3px;
    }
 
-   .join-session-button {
-      position: absolute;
-      bottom: 20px;
-   }
-
-   .join-session-button button {
-      border-radius: 10px;
+   .join-session-button button,
+   .add-announcement-button button,
+   .add-announcement-submit,
+   .return-announcement-button,
+   .add-class-submit {
+      border-radius: 5px;
       border: none;
       padding: 10px 15px;
       background-color: #2ecc71;
@@ -115,6 +114,60 @@ and (min-device-width : 320px) {
       cursor: pointer;
    }
 
+   .return-announcement-button {
+      background-color: #c0392b;
+   }
+
+   .add-announcement-form input,
+   .form-add-class input {
+      margin: 5px auto;
+      border-radius: 5px;
+      border: 1px solid #d3d3d3;
+      padding: 7px;
+   }
+
+   .add-announcement-form > p,
+   .form-add-class > p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+   }
+
+   .add-announcement-submit,
+   .add-class-submit,
+   .return-announcement-button {
+      width: 100%;
+      margin: 5px auto;
+   }
+   
+   .add-announcement-submit,
+   .add-class-submit {
+      padding: 5px 25px;
+   }
+
+   .return-announcement-button {
+      text-align: center;
+      padding: 5px 0px;
+   }
+
+   .add-announcement-submit p,
+   .return-announcement-button p,
+   .add-class-submit p {
+      margin: 0;
+   }
+
+   .add-announcement-form,
+   .form-add-class {
+      padding: 20px;
+   }
+
+   .bottom-button-wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 20px;
+   }
 }
 
 /* Smartphones (landscape) ----------- */
