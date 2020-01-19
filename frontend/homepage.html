@@ -9,9 +9,12 @@
 
 <style>
 
+
+
 html{
 	min-height: 100%;
 	position: relative;
+	cursor: url("cursor_1.png"), auto;
 }
 
 body{
@@ -25,6 +28,16 @@ body{
 body.noScroll {
 	overflow: hidden;
 }
+
+::-moz-selection{
+	color: white;
+	background: #FF217D;
+}
+::selection{
+	color: white;
+	background: #FF217D;
+}
+
 
 h1{
 	font-family: Impact, Charcoal, serif;
@@ -41,6 +54,7 @@ h2{
 	letter-spacing: 2px;
 	font-size: 30px;
 	color: white;
+	line-height: 4px;
 }
 
 .login{
@@ -51,11 +65,11 @@ h2{
 	position: relative;
 	margin: auto;
 	border-radius: 40px;
+	text-underline-width: 0px;
 }
 
 .login:hover{
--webkit-transition: background-color rgb(255, 255, 255, 0.3);
-	transition: background-color rgb(255, 255, 255, 0.3);
+
 }
 
 input[type=text]{
@@ -73,8 +87,40 @@ input[type=text]{
 	border-radius: 25px;
 	box-sizing: border-box;
 }
+input[type=password]{
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	opacity: 0.5;
+-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+	color: #FF217D;
+	padding: 14px 20px;
+	margin: 8px 0;
+	cursor: pointer;
+	display: inline-block;
+	border: 3px double white;
+	border-radius: 25px;
+	box-sizing: border-box;
+}
+input[type=checkb]{
+	height: 20px;
+	width: 10px;
+	background-color: rgba(255, 255, 255, 0.2);
+	opacity: 0.5;
+-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+	color: #FF217D;
+	padding: 10px 10px;
+	margin: 8px 0;
+	cursor: pointer;
+	display: inline-block;
+	border: 3px double white;
+	border-radius: 25px;
+	box-sizing: border-box;
+}
 
-input[type=text]:hover{
+input:hover{
+	cursor: url("cursor_1.png"), auto;
 	opacity: 1;
 }
 
@@ -253,7 +299,6 @@ input[type=text]:focus{
 
 <body>
 
-
 <img src="RHr1.png" class="f1"
 	style="width: 40px;
 	-webkit-animation-delay: 4s;
@@ -387,18 +432,30 @@ input[type=text]:focus{
 	animation: enter 1s ease-out 0s 1;
 
 "><center>UClassRoom</center></h1>
-
+<tag autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 <div class="login">
 <center>
 <h2>NetID:</h2>
 <input type="text" name="firstname" placeholder="Your UCR NetID...">
 	<br>
 <h2>Password:</h2>
-<input type="text" name="lastname" placeholder="Your password...">
+<input type="password" name="lastname" value="FakePSW" id="passInput" placeholder="Your password...">
+<input type="checkb" onclick="hidePin()"><font color="white">  Show Password</color>
 </center>
 </div>
+</tag>
 
 
+<script>
+function hidePin(){
+	var inp = document.getElementById("passInput");
+	if(inp.type==="password"){
+		inp.type="text";
+	}else{
+		inp.type="password";
+	}
+}
+</script>
   
 </body>
 
