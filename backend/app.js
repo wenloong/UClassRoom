@@ -16,10 +16,10 @@ class Session {
     }
 }
 
-server.listen(80);
+server.listen(8080);
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.send("It's the UClassRoom API! :D");
 });
 
 io.on('connection', function (socket) {
