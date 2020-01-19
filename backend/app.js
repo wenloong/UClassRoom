@@ -19,7 +19,8 @@ class Session {
 server.listen(8080);
 
 app.get('/', function (req, res) {
-    res.send("It's the UClassRoom API! :D");
+    // res.sendFile(__dirname + '/index.html');
+    res.send("It's the UClassRoom API/back-end! :D");
 });
 
 io.on('connection', function (socket) {
@@ -27,6 +28,7 @@ io.on('connection', function (socket) {
 
     socket.on('createsession', function (user, classroomCode, sessionCode) {
         createNewSession(user, classroomCode, sessionCode);
+        socket.emit('sessioncreated', user, classroomCode, sessionCode);
     });
 
     socket.on('endsession', function (user, classroomCode, sessionCode) {
@@ -57,8 +59,10 @@ function createNewSession(user, classroomCode, sessionCode) {
             if (currSession.voteMap.has(user)) {
                 if (currSession.voteMap.get(user) === 0) {
                     currSession.questionVotes--;
+                    sessionNamespace.emit('removevote', user, 0);
                 } else {
                     currSession.slowDownVotes--;
+                    sessionNamespace.emit('removevote', user, 1);
                 }
             }
 
@@ -71,16 +75,22 @@ function createNewSession(user, classroomCode, sessionCode) {
             }
 
             currSession.voteMap.set(user, choice);
+            sessionNamespace.emit('vote', user, choice);
+            socket.emit('success session vote', user, choice);
         })
         .on('session join', function (user) {
             console.log(user + " joined the session!");
 
             currSession.userMap.set(user, 1); // Add to list of members attended
+
+            socket.emit('success session join', user);
         })
         .on('session leave', function (user) {
             console.log(user + " left the session!");
 
             currSession.userMap.set(user, 2); // Update to show disconnected
+
+            socket.emit('success session leave', user);
         })
         .on('session resetvotes', function (user) {
             console.log(user + " reset the votes!");
@@ -88,9 +98,14 @@ function createNewSession(user, classroomCode, sessionCode) {
             currSession.voteMap.clear();
             currSession.questionVotes = 0;
             currSession.slowDownVotes = 0;
+
+            socket.emit('success session resetvotes', user);
+            sessionNamespace.emit('resetvotes');
         })
         .on('disconnect', function () {
             console.log("Namespace level disconnection.");
+
+            socket.emit('success disconnection');
         });
     });
 
