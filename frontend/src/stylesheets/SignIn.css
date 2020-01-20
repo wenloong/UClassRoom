@@ -24,8 +24,8 @@ and (min-device-width : 320px) {
    
    .login {
       position: relative;
-      left: 100px;
-      top: -130px;
+      left: 170px;
+      top: -100px;
       background-color: #fff;
       border: none;
       padding:10px 20px;

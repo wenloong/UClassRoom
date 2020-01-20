@@ -201,7 +201,7 @@ const UniqueCode = ({ handleClose, showUniqueCode, children }) => {
    
                <div className="enter-button">
                   <Link to="/inclass">
-                     <p onClick={this.handleJoinSession}>Enter</p>
+                     <p>Enter</p>
                   </Link>
                </div>   
             </div>

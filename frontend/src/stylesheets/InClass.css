@@ -6,9 +6,28 @@ and (min-device-width : 320px) {
    }
 
    .text-to-speech {
+      display: block;
       background-color: #3F3F3F;
       border-radius: 10px;
-      height: 50vh;
+      min-height: 50vh;
+      max-height: 50vh;
+      overflow-y: scroll;
+      margin-top: 20px;
+   }
+
+   ::-webkit-scrollbar {
+      height: 12px;
+      width: 12px;
+      background: #3F3F3F;
+   }
+  
+   ::-webkit-scrollbar-thumb {
+         background: #696969;
+         -webkit-border-radius: 1ex;
+   }
+  
+   ::-webkit-scrollbar-corner {
+         background: ##3F3F3F;
    }
 
    .text-to-speech p {
@@ -46,6 +65,17 @@ and (min-device-width : 320px) {
       background-color: #c0392b;
       color: #fff;
       border-radius: 10px;
+   }
+
+   .reset-button {
+      border-radius: 5px;
+      border: none;
+      padding: 10px 15px;
+      background-color: #2ecc71;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      margin-right: 10px;
    }
 }
 

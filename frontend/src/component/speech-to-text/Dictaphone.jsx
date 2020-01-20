@@ -11,7 +11,7 @@ class Dictaphone extends Component {
 
     return (
       <div>
-        <button onClick={resetTranscript}>Reset</button>
+        <button className="reset-button" onClick={resetTranscript}>Reset</button>
         <span>{transcript}</span>
       </div>
     )

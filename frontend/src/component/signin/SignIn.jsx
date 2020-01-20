@@ -15,10 +15,10 @@ class SignIn extends Component {
       } = this.props;
       return (
          <React.Fragment>
-            <img src="" class="f1"/>
+            {/* <img src="" class="f1"/>
             <img src="RHr2.png" class="f2"/>
             <img src="RHr3.png" class="f3"/>
-            <img src="RHr4.png" class="f4"/>
+            <img src="RHr4.png" class="f4"/> */}
 
             {
             user 
